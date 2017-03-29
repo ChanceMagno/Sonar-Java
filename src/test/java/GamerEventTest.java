@@ -8,4 +8,9 @@ public class GamerEventTest {
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
+  @Test
+  public void classInstantiates_true() {
+    GamerEvent event = new GamerEvent();
+    assertTrue(event instanceof GamerEvent);
+  }
 }

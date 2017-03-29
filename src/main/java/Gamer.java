@@ -10,7 +10,7 @@ public class Gamer {
   }
 
   public String getName(){
-    return name;
+    return name; 
   }
 
   public int getId() {
