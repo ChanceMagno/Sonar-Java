@@ -4,17 +4,12 @@ import static org.junit.Assert.*;
 
 public class GamerTest {
 
-  @Before
-  public void setUp() {
-    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/sonar_test", null, null);
-  }
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
 
-  @After
-  public void tearDown() {
-    try (Connection con = DB.sql2o.open()) {
-      String sql = "DELETE FROM name_of_your_table *;";
-      con.createQuery(sql).executeUpdate();
-    }
+  @Test
+  public void gameInstantiatesCorrectly_true() {
+    Gamer test = new Gamer();
+    assertEquals(true, test instanceof Gamer);
   }
-
 }
