@@ -4,17 +4,16 @@ import static org.junit.Assert.*;
 
 public class PlatformTest {
 
-  @Before
-  public void setUp() {
-    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/sonar_test", null, null);
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
+
+  @Test
+  public void getAllPlatforms_true() {
+    assertTrue("PC".equals(Platform.all().get(0).getName()));
   }
 
-  @After
-  public void tearDown() {
-    try (Connection con = DB.sql2o.open()) {
-      String sql = "DELETE FROM name_of_your_table *;";
-      con.createQuery(sql).executeUpdate();
-    }
+  @Test
+  public void find_returnsPlatformWithSameID_true() {
+    assertEquals(Platform.find(1).getName(), "PC");
   }
-
 }
