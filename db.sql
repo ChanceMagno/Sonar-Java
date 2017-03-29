@@ -143,12 +143,34 @@ ALTER SEQUENCE platforms_id_seq OWNED BY platforms.id;
 --
 
 CREATE TABLE signups (
+    id integer NOT NULL,
     gamer_id integer,
     event_id integer
 );
 
 
 ALTER TABLE signups OWNER TO "Guest";
+
+--
+-- Name: signups_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE signups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE signups_id_seq OWNER TO "Guest";
+
+--
+-- Name: signups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE signups_id_seq OWNED BY signups.id;
+
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
@@ -169,6 +191,13 @@ ALTER TABLE ONLY gamers ALTER COLUMN id SET DEFAULT nextval('gamers_id_seq'::reg
 --
 
 ALTER TABLE ONLY platforms ALTER COLUMN id SET DEFAULT nextval('platforms_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY signups ALTER COLUMN id SET DEFAULT nextval('signups_id_seq'::regclass);
 
 
 --
@@ -229,8 +258,15 @@ SELECT pg_catalog.setval('platforms_id_seq', 1, false);
 -- Data for Name: signups; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY signups (gamer_id, event_id) FROM stdin;
+COPY signups (id, gamer_id, event_id) FROM stdin;
 \.
+
+
+--
+-- Name: signups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('signups_id_seq', 1, false);
 
 
 --
@@ -255,6 +291,14 @@ ALTER TABLE ONLY gamers
 
 ALTER TABLE ONLY platforms
     ADD CONSTRAINT platforms_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: signups_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY signups
+    ADD CONSTRAINT signups_pkey PRIMARY KEY (id);
 
 
 --
