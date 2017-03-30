@@ -9,11 +9,11 @@ public class PlatformTest {
 
   @Test
   public void getAllPlatforms_true() {
-    assertTrue("PC".equals(Platform.all().get(0).getName()));
+    assertTrue("PC".equals(Platform.all().get(0).getPlatformName()));
   }
 
   @Test
   public void find_returnsPlatformWithSameID_true() {
-    assertEquals(Platform.find(1).getName(), "PC");
+    assertEquals(Platform.find(1).getPlatformName(), "PC");
   }
 }

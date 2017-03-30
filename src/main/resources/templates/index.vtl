@@ -4,6 +4,22 @@
       <div class="col-md-offset-3 col-md-6">
         <h3>$event.getEventName()</h3>
         <h6>$event.getGameName()</h6>
+        <h6>$event.getDate()</h6>
+        <h6>$event.getTime()</h6>
+        <h6>$event.getEventPlatformName()</h6>
+        <h6>$event.getMaxPlayers()</h6>
+        <h6>$event.getEventCreatorName()</h6>
+        #foreach ($tempGamer in $event.getSignUps())
+          #if (!($tempGamer.equals($gamer))
+            <h6><a href="/gamers/$gamer.getId()/events/$event.getId()/signup">Sign Up</a></h6>
+          #else
+            <ul>
+              #foreach ($signupGamer in $event.getSignUps())
+                <li>$signupGamer.getName()</li>
+              #end
+            </ul>
+          #end
+        #end
       </div>
     </div>
   #end

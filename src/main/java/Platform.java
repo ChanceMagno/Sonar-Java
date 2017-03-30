@@ -14,7 +14,7 @@ public class Platform {
     return id;
   }
 
-  public String getName() {
+  public String getPlatformName() {
     return name;
   }
 
@@ -24,7 +24,7 @@ public class Platform {
       return false;
     } else {
       Platform newPlatform = (Platform) otherPlatform;
-      return this.getId() == newPlatform.getId() && this.getName() == newPlatform.getName();
+      return this.getId() == newPlatform.getId() && this.getPlatformName().equals(newPlatform.getPlatformName());
     }
   }
 

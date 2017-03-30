@@ -21,6 +21,31 @@ public class Event {
     this.time = time;
   }
 
+  public List<Gamer> getSignUps() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM gamers WHERE id = (SELECT gamer_id FROM signups WHERE event_id =" + this.id + ");";
+      return con.createQuery(sql).executeAndFetch(Gamer.class);
+    }
+  }
+
+  public String getEventPlatformName(){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM platforms WHERE id = " + this.platform_id;
+      Platform platform = con.createQuery(sql)
+        .executeAndFetchFirst(Platform.class);
+      return platform.getPlatformName();
+    }
+  }
+
+  public String getEventCreatorName(){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM gamers WHERE id = " + this.event_creator_id;
+      Gamer gamer = con.createQuery(sql)
+        .executeAndFetchFirst(Gamer.class);
+      return gamer.getName();
+    }
+  }
+
   public String getEventName() {
     return event_name;
   }

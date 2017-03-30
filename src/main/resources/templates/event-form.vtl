@@ -7,14 +7,15 @@
   <label for="platform_id">Platform:</label>
   <select id="platform_id" name="platform_id" type="text">
     #foreach ($platform in $platforms)
-      <option value="$platform.getId()">$platform.getName()</option>
+      <option value="$platform.getId()">$platform.getPlatformName()</option>
     #end
+    </select>
   <label for="max_players">Max Players:</label>
   <input id="max_players" name="max_players" type="number">
   <label for="date">Date:</label>
-  <input id="date" name="date" type="text">
+  <input id="date" name="date" type="date">
   <label for="time">Time:</label>
-  <input id="time" name="time" type="text">
+  <input id="time" name="time" type="time">
   <button type="submit" class="btn btn-success">Create Event</button>
 </form>
 <!--event-form-->

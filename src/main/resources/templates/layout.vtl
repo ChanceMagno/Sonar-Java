@@ -14,30 +14,32 @@
       <div class="jumbotron">
         <h1>Sonar</h1>
       </div>
-        <nav class="navbar navbar-default">
-          <!-- <div class="container"> -->
-            <div class="row">
-              <div class="col-md-10">
-                <button type="button" class="btn btn-outline-success"><a href="/gamers/$gamer.getId()/new-event">New Event</a></button>
-              </div>
-              <div class="credentials">
-                #if ($gamer.getName())
-                  <div class="col-md-2">
-                    <p>You are logged in as $gamer.getName()</p>
-                  </div>
-                #else
-                  <div class="col-md-1">
-                    <button type="button" class="btn btn-outline-success"><a href="/login">Log In</a></button>
-                  </div>
-                  <div class="col-md-1">
-                    <button type="button" class="btn btn-outline-success"><a href="/signup">Sign Up</a></button>
-                  </div>
-                #end
-              </div>
+      <nav class="navbar navbar-default">
+        <!-- <div class="container"> -->
+          <div class="row">
+            <div class="col-md-10">
+              <ul id="navleft">
+                <li><button type="button" class="btn btn-outline-success"><a href="/gamers/$gamer.getId()/new-event">New Event</a></button></li>
+              </ul>
+              <!-- insert more to nav bar here -->
             </div>
-          <!-- </div> -->
-        </nav>
-
+            <div class="credentials">
+              #if ($gamer.getName())
+                <div class="col-md-2">
+                  <p>Hello $gamer.getName()</p>
+                </div>
+              #else
+                <div class="col-md-1">
+                  <button type="button" class="btn btn-outline-success"><a href="/login">Log In</a></button>
+                </div>
+                <div class="col-md-1">
+                  <button type="button" class="btn btn-outline-success"><a href="/signup">Sign Up</a></button>
+                </div>
+              #end
+            </div>
+          </div>
+        <!-- </div> -->
+      </nav>
       #parse( $template )
     </div>
     <!-- end inner template-->

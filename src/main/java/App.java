@@ -8,9 +8,12 @@ public class App {
   public static void main(String[] args) {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
+
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("events", Event.all());
+      // model.put("platform", Platform.class);
+      // model.put("gamer", Gamer.class);
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -62,6 +65,19 @@ public class App {
 
       Event event = new Event(eventName, gameName, platformId, maxPlayers, date, time, gamer.getId());
       event.save();
+
+      String url = String.format("/gamers/" + gamer.getId());
+      response.redirect(url);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/gamers/:gamer_id/events/:event_id/signup", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Gamer gamer = Gamer.find(Integer.parseInt(request.params(":gamer_id")));
+      Event event = Event.find(Integer.parseInt(request.params(":event_id")));
+
+      GamerEvent signup = new GamerEvent(gamer.getId(), event.getId());
+      signup.save();
 
       String url = String.format("/gamers/" + gamer.getId());
       response.redirect(url);

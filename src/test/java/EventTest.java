@@ -51,4 +51,13 @@ public class EventTest {
     assertEquals(Event.find(event2.getId()), event2);
   }
 
+  @Test
+  public void getEventPlatformName_returnsEventPlatformName() {
+    Event event1 = new Event("halo tournement", "halo 2", 2, 16, "2017-03-30", "18:30:00", 1);
+    event1.save();
+    Event event2 = new Event("battlefield", "battlefield 1", 2, 64, "2017-03-30", "18:30:00", 1);
+    event2.save();
+    assertEquals("Xbox One", event1.getEventPlatformName());
+  }
+
 }
